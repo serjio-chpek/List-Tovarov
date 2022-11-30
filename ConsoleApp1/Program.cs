@@ -7,13 +7,13 @@ internal class Program
     {
 
         Console.WriteLine("Выберите команду");
-
+        Console.WriteLine("доступный команды: добавить, список, удалить, сохранить, загрузить");
+        Console.WriteLine("Примеры написания команд: \n добавить яблоко 150(цена) 10(скидка) \n удалить, ENTER, 1 \n список \n сохранить \n загрузить");
 
         while (true)
         {
             var  command = Console.ReadLine().ToLower().Split(' ');
             Controller s = new Controller();
-
             switch (command[0])
             {
 
@@ -23,41 +23,22 @@ internal class Program
                 case "список":
                     Console.WriteLine(s.GetGoods());
                     break;
-
+                case "сохранить":
+                    s.SaveList();
+                    break;
+                case "загрузить":
+                    s.OpenList();
+                    break;
+                case "удалить":
+                    s.Delete();
+                    break;
                 default:
                     Console.WriteLine("Ошибка в команде");
                     break;
             }
         }
 
-        
 
-
-        //List<Goods> list = new List<Goods>();
-
-        //for (int i = 0; i < 3; i++)
-        //{
-        //    Goods x = new Goods();
-        //    Console.WriteLine("Напишите название товара");
-        //    x.Name = Console.ReadLine();
-        //    Console.WriteLine("Напишите стоимость товара");
-        //    x.Cost = Console.ReadLine();
-        //    list.Add(x);
-        //}
-
-        //Controller serialize = new Controller();
-
-        //serialize.Save(list);
-
-        //string path = "list.json";
-        //var t = serialize.Load(path);
-
-        //if (t == null)
-        //    return;
-
-        //foreach (var item in t)
-        //{
-        //    Console.WriteLine("{0} {1}", item.Name, item.Cost);
-        //}
     }
+
 }

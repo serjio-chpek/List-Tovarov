@@ -18,24 +18,46 @@ namespace ConsoleApp1
                 Title = title,
                 Price = price,
                 Sale = sale,
-
+                
             };
-
+            good.Price = good.Price - good.Sale;
             Goods.Add(good);
         }
         public string GetGoods()
         {
+            int i = 1;
             string text = "";
             foreach (var item in Goods)
             {
-                text += $"{item.Title} цена - {item.Price}\n";
+
+                text += $"номер товара - {i}, {item.Title}, цена со скидкой- {item.Price}\n";
+                i++;
             }
             return text;
         }
 
         public void Delete()
         {
+            Console.WriteLine("Введите номер товара по порядку, который хотите удалить");
+            int nomer_tovara = Convert.ToInt32(Console.ReadLine());
 
+            Goods.RemoveAt(nomer_tovara-1);
+        }
+
+        public void SaveList()
+        {
+            var json = JsonSerializer.Serialize<List<Goods>>(Goods);
+
+            File.WriteAllText("list.json", json);
+        }
+        public void OpenList()
+        {
+            if (!File.Exists("list.json"))
+                return;
+
+            var json = File.ReadAllText("list.json");
+
+            Goods = JsonSerializer.Deserialize<List<Goods>>(json);
         }
     }
 }
