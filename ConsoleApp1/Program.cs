@@ -30,7 +30,7 @@ internal class Program
                     s.OpenList();
                     break;
                 case "удалить":
-                    s.Delete();
+                    s.Delete(Console.ReadLine());
                     break;
                 default:
                     Console.WriteLine("Ошибка в команде");

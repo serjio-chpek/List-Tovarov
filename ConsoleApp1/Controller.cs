@@ -25,23 +25,34 @@ namespace ConsoleApp1
         }
         public string GetGoods()
         {
-            int i = 1;
             string text = "";
             foreach (var item in Goods)
             {
 
-                text += $"номер товара - {i}, {item.Title}, цена со скидкой- {item.Price}\n";
-                i++;
+                text += $"{item.Title}, цена со скидкой- {item.Price}\n";
             }
             return text;
         }
 
-        public void Delete()
+        public void Delete(string t)
         {
-            Console.WriteLine("Введите номер товара по порядку, который хотите удалить");
-            int nomer_tovara = Convert.ToInt32(Console.ReadLine());
+            
 
-            Goods.RemoveAt(nomer_tovara-1);
+            var x = Goods.FirstOrDefault(x => x.Title == t);
+
+            if (x == null)
+                return;
+
+            Goods.Remove(x);
+
+
+
+
+
+            //Console.WriteLine("Введите номер товара по порядку, который хотите удалить");
+            //int nomer_tovara = Convert.ToInt32(Console.ReadLine());
+
+            //Goods.RemoveAt(nomer_tovara-1);
         }
 
         public void SaveList()
